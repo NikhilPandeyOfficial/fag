@@ -1,0 +1,149 @@
+
+.container {
+    display: inline-block; 
+    height: 90%;
+    width: 100%;
+    padding: 0 8%;
+    background-color: #c4c4c4;
+}
+
+.left {
+    float: left;
+    width: 28%;
+    height: 90vh;
+    padding: 10% 0;
+}
+
+.filterCard {
+    width: 100%;
+    height: 100px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    margin: 10px 0px;
+    padding: 10px;
+}
+
+.filterHead {
+    height: 30%;
+    background-color: #ffffff;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+}
+
+.filterName {
+    width: 90%;
+    height: 100%;
+    background-color: #ffffff;
+    color: black;
+    padding: 2px 5px;
+    font-family: 'Montserrat-medium', sans-serif;
+}
+
+.collapseIconContainer {
+    width: 10%;
+    height: 100%;
+    background-color: inherit;
+}
+
+.collapseIcon {
+    background-color: inherit;
+}
+
+.filterContainer {
+    height: 70%;
+    padding: 2px 0px;
+    background-color: #ffffff;
+    overflow: hidden;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.filterCapsule {
+    border: 2px solid #000000;
+    background-color: inherit;
+    margin: 2px;
+    height: 20px;
+    width: 100px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.btnContainer {
+    display: flex;
+    justify-content: end;
+}
+
+.btn {
+    max-width: 70%;
+    height: 40px;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: rgb(27, 83, 187);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.right {
+    float: right;
+    height: 90vh;
+    width: 70%;
+    background-color: #ffffff;
+    flex-direction: row;
+    flex-wrap: wrap;
+    display: flex;
+    padding: 20px 20px;
+}
+
+.centered {
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.faceIcon {
+    width: 100% !important; 
+    height: 60% !important;
+    background-color: #ffffff;
+    color: #c4c4c4;
+}
+
+.msg {
+    color: #c4c4c4;
+    background-color: inherit;
+    font-size: 26px;
+    font-family: 'Montserrat-medium', sans-serif;
+}
+
+.imageContainer {
+    width: 276px;
+    height: 310px;
+    margin: 10px;
+    box-shadow: 0px 8px 10px #c4c4c4;
+    border-radius: 25px;
+    background-color: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+    border-top: 0.1px solid #000000;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    padding:  10px;
+    border-radius: 25px;
+    background-color: inherit;
+    background-size: cover;
+}

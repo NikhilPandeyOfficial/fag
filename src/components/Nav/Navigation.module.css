@@ -1,0 +1,35 @@
+.mainHeader {
+    height: 10vh;
+    padding: 20px 40px;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+}
+
+a {
+    background-color: inherit;
+}
+
+.logo {
+    padding: 0px;
+    font-size: 30px;
+    font-family: 'Montserrat-medium', sans-serif ;
+}
+
+.mainHeader ul {
+    list-style: none;
+    background-color: inherit;
+    font-family: 'Montserrat', sans-serif ;
+}
+
+.mainHeader ul li {
+    display: inline-block;
+    background-color: inherit;
+    padding: 10px 20px;
+    
+}
+
+.mainHeader a {
+    text-decoration: none;
+    color: #000000
+}
