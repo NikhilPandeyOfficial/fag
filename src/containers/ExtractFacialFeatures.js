@@ -4,6 +4,7 @@ import styles from "./ExtractFacialFeatures.module.css";
 
 const ExtractFacialFeatures = (props) => {
   const [selectedImage, setselectedImage] = useState(null);
+  const [error, setError] = useState("");
 
   const comparedDetails = useSelector(
     (state) => state.faces.extractedFacialDetails
