@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   ExpandLess as ExpandLessIcon,
   Face as FaceIcon,
@@ -6,14 +6,49 @@ import {
 
 import { useSelector } from "react-redux";
 
+import * as facesActions from "../store/actions/faces";
 import styles from "./GenerateFacesUsingFacialFeatures.module.css";
 
 const GenerateFacesUsingFacialFeatures = (props) => {
-  let filled = false;
-
   const facesArray = useSelector((state) => state.faces.generatedFaces);
 
-  console.log(facesArray);
+  const [eyeColor, setEyeColor] = useState(null);
+  const [hairColor, setHairColor] = useState(null);
+  const [ethnicity, setEthnicity] = useState(null);
+  const [gender, setGender] = useState(null);
+  const [hairLength, setHairLength] = useState(null);
+  const [error, setError] = useState("");
+
+  const isFacesArrayFilled = facesArray.length != 0;
+  const [isFirstTime, setIsFirstTime] = useState(true);
+
+  const submitHandler = async () => {
+    setIsFirstTime(false);
+    return;
+    try {
+      setError("");
+      if (!eyeColor || !hairColor || !ethnicity || !gender || !hairLength) {
+        setError("Please select from each feature!");
+        return;
+      }
+
+      const facialInputs = {
+        eyeColor,
+        hairColor,
+        ethnicity,
+        gender,
+        hairLength,
+      };
+
+      await facesActions.generateFaces(facialInputs);
+    } catch (error) {
+      console.log(error);
+      // display some sort of popup etc to display error
+
+      setError("Something went wrong!");
+    }
+    setIsFirstTime(false);
+  };
 
   return (
     <div className={styles.container}>
@@ -35,11 +70,13 @@ const GenerateFacesUsingFacialFeatures = (props) => {
         </div>
 
         <div className={styles.btnContainer}>
-          <div className={styles.btn}> Generate </div>
+          <div className={styles.btn} onClick={submitHandler}>
+            {!isFirstTime ? "Generate" : "Modify Faces"}
+          </div>
         </div>
       </div>
       <div className={styles.right}>
-        {!!filled && (
+        {!!isFacesArrayFilled && (
           <React.Fragment>
             <div className={styles.imageContainer}>
               <img
@@ -51,7 +88,7 @@ const GenerateFacesUsingFacialFeatures = (props) => {
             <div className={styles.imageContainer}></div>
           </React.Fragment>
         )}
-        {!filled && (
+        {!isFacesArrayFilled && (
           <div className={styles.centered}>
             <FaceIcon className={styles.faceIcon} />
             <div className={styles.msg}>Let's Make Some Faces!</div>
