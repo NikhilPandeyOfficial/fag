@@ -14,10 +14,7 @@ const Homepage = (props) => {
           >
             <div>Generate Faces</div>
           </Link>
-          <Link
-            className={styles.box1}
-            to="/generate-faces-using-facial-features"
-          >
+          <Link className={styles.box1} to="/compare-faces">
             <div>Compare Faces</div>
           </Link>
         </div>

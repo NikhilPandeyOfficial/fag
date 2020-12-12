@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 import styles from "./ExtractFacialFeatures.module.css";
 
