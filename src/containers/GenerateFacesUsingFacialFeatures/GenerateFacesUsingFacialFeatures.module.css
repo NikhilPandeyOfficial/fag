@@ -1,0 +1,160 @@
+* {
+  /* outline: 1px solid red; */
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.cont {
+  display: inline-block;
+  height: 90%;
+  width: 100vw;
+}
+
+.btnContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  background-color: #222222;
+}
+
+.btn {
+  width: 70%;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #1b53bb;
+  text-align: center;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #1b53ff;
+}
+
+.msg {
+  background-color: inherit;
+  font-size: 26px;
+  font-family: "Montserrat-medium", sans-serif;
+}
+
+.col_filterResponsive {
+  position: relative;
+  padding: 0.5rem;
+  background-color: #222222;
+  color: #e6ecf0;
+  display: none;
+}
+
+.col_filterResponsive .filterBtn {
+  width: 90px;
+  padding: 0.2rem 0.5rem;
+  background-color: #1b53bb;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  color: #e6ecf0;
+  border-radius: 6px;
+  cursor: pointer;
+  float: right;
+}
+
+.col_filterResponsive .filterBtn:hover {
+  background-color: #1b53ff;
+}
+
+.col_filterResponsive .filterBtn label {
+  color: #e6ecf0;
+  margin: 0;
+  background-color: transparent;
+  padding: 0;
+  pointer-events: none;
+}
+
+.col_filterResponsive .filterBtn .filterIcon {
+  color: #e6ecf0;
+  background-color: transparent;
+  pointer-events: none;
+}
+
+.showFilters {
+  height: calc(100vh - 45px);
+  padding: 1.5rem;
+  background-color: #222222;
+  overflow-y: auto;
+  position: fixed;
+  width: 100vw;
+  z-index: 10;
+}
+
+.closeBtn {
+  display: none;
+  background-color: #222222;
+}
+
+.closeIcon {
+  background-color: transparent;
+  color: #e6ecf0;
+  cursor: pointer;
+}
+
+.hideFilters {
+  display: none;
+  height: calc(100vh - 45px);
+  padding: 1.5rem;
+  background-color: #222222;
+  overflow-y: auto;
+  position: fixed;
+  width: 100vw;
+  z-index: 10;
+}
+
+.hideFilters > div {
+  background-color: #222222;
+}
+
+.showFilters > div {
+  background-color: #222222;
+}
+
+.col_results {
+  background-color: #e6ecf0;
+  padding: 1rem;
+}
+
+@media screen and (max-width: 575px) {
+  .col_results {
+    width: 100vw;
+  }
+  .col_filterResponsive {
+    display: block;
+  }
+  .closeBtn {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .hideFilters,
+  .showFilters {
+    display: block;
+    position: relative;
+  }
+}
+/*# sourceMappingURL=GenerateFacesUsingFacialFeatures.module.css.map */

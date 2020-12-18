@@ -1,0 +1,47 @@
+@import "../../CSSpartials/colors.scss";
+
+.imageContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+  &:nth-child(2) {
+    justify-content: flex-start;
+  }
+
+  & input {
+    display: none;
+  }
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  & .btn {
+    display: inline-block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: $btn;
+    text-align: center;
+    color: #ffffff;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+
+    &:hover {
+      background-color: $btnHover;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .imageContainer {
+    justify-content: center;
+
+    &:nth-child(2) {
+      justify-content: center;
+    }
+  }
+}

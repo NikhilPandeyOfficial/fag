@@ -1,0 +1,66 @@
+@import "../../CSSpartials/colors.scss";
+
+.imageUpload {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 1rem;
+
+  & .btnContainer {
+    display: flex;
+    width: 200px;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    & .btn {
+      background-color: $btn;
+      color: $bg;
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $btnHover;
+      }
+    }
+  }
+}
+
+.extractionResults {
+  padding: 2rem 1rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  & table {
+    border-collapse: collapse;
+
+    & td,
+    th {
+      width: 150px;
+      padding: 0.5rem;
+      background-color: transparent;
+    }
+
+    & tr:nth-child(odd) {
+      background-color: #d6d6d6;
+      // color: $bg;
+    }
+
+    & tr:nth-child(1) {
+      background-color: $darkNav;
+      color: $bg;
+    }
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .imageUpload {
+    align-items: center;
+  }
+
+  .extractionResults {
+    justify-content: center;
+  }
+}

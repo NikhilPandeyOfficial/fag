@@ -1,12 +1,15 @@
 import React from "react";
 import { Route } from "react-router-dom";
 
+// bootstrap
+import "bootstrap/dist/css/bootstrap.min.css";
+
 import "./App.module.css";
 import Navigation from "./components/Nav/Navigation";
-import GenerateFacesUsingFacialFeatures from "./containers/GenerateFacesUsingFacialFeatures";
-import CompareFaces from "./containers/CompareFaces";
-import ExtractFacialFeatures from "./containers/ExtractFacialFeatures";
-import Homepage from "./containers/Homepage";
+import GenerateFacesUsingFacialFeatures from "./containers/GenerateFacesUsingFacialFeatures/GenerateFacesUsingFacialFeatures";
+import CompareFaces from "./containers/CompareFaces/CompareFaces";
+import ExtractFacialFeatures from "./containers/ExtractFacialFeatures/ExtractFacialFeatures";
+import Homepage from "./containers/Homepage/Homepage";
 
 const App = (props) => {
   return (

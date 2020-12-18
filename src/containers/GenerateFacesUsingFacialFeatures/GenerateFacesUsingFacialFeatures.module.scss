@@ -1,0 +1,166 @@
+@import "../../CSSpartials/colors.scss";
+
+* {
+  /* outline: 1px solid red; */
+  transition: all 0.3s ease-in-out;
+}
+
+.cont {
+  display: inline-block;
+  height: 90%;
+  width: 100vw;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: flex-end;
+  background-color: $dark;
+}
+
+.btn {
+  width: 70%;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: $btn;
+  text-align: center;
+  color: #ffffff;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $btnHover;
+  }
+}
+
+.msg {
+  background-color: inherit;
+  font-size: 26px;
+  font-family: "Montserrat-medium", sans-serif;
+}
+
+// .imageContainer {
+//   width: 276px;
+//   height: 310px;
+//   margin: 10px;
+//   border-radius: 25px;
+//   background-color: inherit;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   border-top: 0.1px solid #000000;
+// }
+
+// .image {
+//   width: 100%;
+//   height: 100%;
+//   padding: 10px;
+//   border-radius: 25px;
+//   background-color: inherit;
+//   background-size: cover;
+// }
+
+.col_filterResponsive {
+  position: relative;
+  padding: 0.5rem;
+  background-color: $dark;
+  color: $bg;
+  display: none;
+
+  & .filterBtn {
+    width: 90px;
+    padding: 0.2rem 0.5rem;
+    background-color: $btn;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    color: $bg;
+    border-radius: 6px;
+    cursor: pointer;
+    float: right;
+
+    &:hover {
+      background-color: $btnHover;
+    }
+
+    & label {
+      color: $bg;
+      margin: 0;
+      background-color: transparent;
+      padding: 0;
+      pointer-events: none;
+    }
+
+    & .filterIcon {
+      color: $bg;
+      background-color: transparent;
+      pointer-events: none;
+    }
+  }
+}
+
+.showFilters {
+  height: calc(100vh - 45px);
+  padding: 1.5rem;
+  background-color: $dark;
+  overflow-y: auto;
+  position: fixed;
+  width: 100vw;
+  z-index: 10;
+}
+
+.closeBtn {
+  display: none;
+  background-color: $dark;
+}
+
+.closeIcon {
+  background-color: transparent;
+  color: $bg;
+  cursor: pointer;
+}
+
+.hideFilters {
+  display: none;
+  height: calc(100vh - 45px);
+  padding: 1.5rem;
+  background-color: $dark;
+  overflow-y: auto;
+  position: fixed;
+  width: 100vw;
+  z-index: 10;
+}
+
+.hideFilters > div {
+  background-color: $dark;
+}
+.showFilters > div {
+  background-color: $dark;
+}
+
+.col_results {
+  background-color: $bg;
+  padding: 1rem;
+}
+
+@media screen and (max-width: 575px) {
+  .col_results {
+    width: 100vw;
+  }
+
+  .col_filterResponsive {
+    display: block;
+  }
+
+  .closeBtn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .hideFilters,
+  .showFilters {
+    display: block;
+    position: relative;
+  }
+}

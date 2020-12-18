@@ -3,9 +3,16 @@ import { useSelector } from "react-redux";
 
 import styles from "./CompareFaces.module.css";
 
+import UploadedImage from "../../components/UploadedImage/UploadedImage";
+
+// Bootstrap
+import { Container, Row, Col } from "react-bootstrap";
+
 const CompareFaces = (props) => {
   const [selectedImage1, setselectedImage1] = useState(null);
   const [selectedImage2, setselectedImage2] = useState(null);
+  const [renderImage1, setRenderImage1] = useState(null);
+  const [renderImage2, setRenderImage2] = useState(null);
 
   const comparedDetails = useSelector((state) => state.faces.comparedDetails);
 
@@ -28,31 +35,25 @@ const CompareFaces = (props) => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.imagesContainer}>
-        <div className={styles.uploadContainer}>
-          {/* handle according to design for 1st upload
-        <input
-          type="file"
-          value={selectedImage1}
-          onChange={(e) => setselectedImage1(e.target.files[0])}
-        />*/}
-        </div>
-        <div className={styles.uploadContainer}>
-          {/* handle according to design for 2nd upload
-        <input
-          type="file"
-          value={selectedImage2}
-          onChange={(e) => setselectedImage2(e.target.files[0])}
-        />*/}
-        </div>
-      </div>
-      <div className={styles.btn} onClick={submitHandler}>
-        Compare
-      </div>
+    <Container>
+      <Row>
+        <Col className={styles.imageContainer}>
+          <UploadedImage name="image1"></UploadedImage>
+        </Col>
+        <Col className={styles.imageContainer}>
+          <UploadedImage name="image2"></UploadedImage>
+        </Col>
+      </Row>
+      <Row>
+        <Col className={styles.btnContainer}>
+          <div className={styles.btn} onClick={submitHandler}>
+            Compare
+          </div>
+        </Col>
+      </Row>
 
       {/**you can use the table structure from 'ExtractFacialFeatures.js' for displaying info. */}
-    </div>
+    </Container>
   );
 };
 
