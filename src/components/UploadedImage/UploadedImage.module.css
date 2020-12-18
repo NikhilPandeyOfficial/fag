@@ -1,0 +1,27 @@
+.uploadContainer {
+  width: clamp(200px, 10vw, 500px);
+  height: 200px;
+  margin: 10px;
+  border-radius: 25px;
+  background-color: #e6ecf0;
+  -webkit-box-shadow: 10px 10px 15px rgba(193, 203, 208, 0.7), -10px -10px 15px rgba(255, 255, 255, 0.7), inset 10px 10px 15px rgba(193, 203, 208, 0), inset -10px -10px 15px rgba(255, 255, 255, 0);
+          box-shadow: 10px 10px 15px rgba(193, 203, 208, 0.7), -10px -10px 15px rgba(255, 255, 255, 0.7), inset 10px 10px 15px rgba(193, 203, 208, 0), inset -10px -10px 15px rgba(255, 255, 255, 0);
+  cursor: pointer;
+  overflow: hidden;
+  border: 5px solid #fff;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.uploadContainer img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  pointer-events: none;
+}
+
+input {
+  display: none;
+}
+/*# sourceMappingURL=UploadedImage.module.css.map */

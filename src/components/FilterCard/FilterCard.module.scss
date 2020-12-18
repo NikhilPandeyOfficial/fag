@@ -1,0 +1,113 @@
+@import "../../CSSassets/colors.scss";
+
+* {
+  /* outline: 1px solid red; */
+  transition: all 0.3s ease-in-out;
+}
+
+.filterHead {
+  position: relative;
+  height: 30%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  background-color: transparent;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  pointer-events: none;
+  transition: 0.3s ease-in-out;
+}
+
+.filterHead::after {
+  position: absolute;
+  content: "";
+  height: 1px;
+  width: 0px;
+  border-radius: 1px;
+  background-color: $bg;
+  bottom: 0;
+  left: 0;
+  transition: 0.2s ease-in-out;
+}
+
+.filterName {
+  width: 90%;
+  height: 100%;
+  color: white;
+  padding: 2px 5px;
+  background-color: transparent;
+  text-transform: capitalize;
+}
+
+.collapseIconContainer {
+  width: 10%;
+  height: 100%;
+  background-color: transparent;
+}
+
+.collapseIcon {
+  background-color: transparent;
+  color: white;
+  transition: 0.3s ease-in-out;
+  transform: rotateZ(180deg);
+}
+
+.filterContainer {
+  height: 70%;
+  padding: 2px 0px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: transparent;
+  text-transform: capitalize;
+}
+
+.filterCapsule {
+  border: 1px solid $bg;
+  color: $bg;
+  background-color: $dark;
+  margin: 0.2rem;
+  padding: 0.1rem;
+  width: 120px;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.1s ease-in-out;
+}
+
+details {
+  background-color: transparent;
+  transition: 0.3s ease-in-out;
+  margin: 1rem 0;
+}
+
+details > summary {
+  border: 0;
+  outline: none;
+  background-color: transparent;
+  margin: 0;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+details[open] .collapseIcon {
+  transform: rotateZ(0deg);
+}
+
+details[open] .filterHead::after {
+  width: 100%;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"]:checked + label {
+  background-color: $bg;
+  color: $dark;
+}
