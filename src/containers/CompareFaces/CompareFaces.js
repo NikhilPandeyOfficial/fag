@@ -1,12 +1,9 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
-
-import styles from "./CompareFaces.module.css";
-
-import UploadedImage from "../../components/UploadedImage/UploadedImage";
-
 // Bootstrap
 import { Container, Row, Col } from "react-bootstrap";
+
+import styles from "./CompareFaces.module.css";
+import UploadedImage from "../../components/UploadedImage/UploadedImage";
 
 const CompareFaces = (props) => {
   const [selectedImage1, setselectedImage1] = useState(null);
@@ -14,7 +11,7 @@ const CompareFaces = (props) => {
   const [renderImage1, setRenderImage1] = useState(null);
   const [renderImage2, setRenderImage2] = useState(null);
 
-  const comparedDetails = useSelector((state) => state.faces.comparedDetails);
+  // const comparedDetails = useSelector((state) => state.faces.comparedDetails);
 
   const [error, setError] = useState("");
 
@@ -26,7 +23,7 @@ const CompareFaces = (props) => {
         return;
       }
 
-      await facesActions.compareFaces(selectedImage1, selectedImage2);
+      // await facesActions.compareFaces(selectedImage1, selectedImage2);
     } catch (error) {
       console.log(error);
       // display some sort of popup etc to display error

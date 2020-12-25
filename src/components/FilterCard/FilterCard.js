@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import styles from "./FilterCard.module.css";
 
 import { ExpandLess as ExpandLessIcon } from "@material-ui/icons";
 
 const filterCard = (props) => {
+  const [selectedVal, setSelectedVal] = useState("");
+
+  useEffect(() => {
+    props.onChange(selectedVal);
+  }, [selectedVal]);
+
   let options = props.options.map((id, ind) => {
     let newId = `${id} ${props.name}`.split(" ").join("_");
     let cardName = `${props.name} Radio`.split(" ").join("_");
@@ -14,6 +20,9 @@ const filterCard = (props) => {
           type="radio"
           id={newId}
           name={cardName}
+          onChange={() => {
+            setSelectedVal(id);
+          }}
           key={`input${props.name}${ind}`}
         />
         <label

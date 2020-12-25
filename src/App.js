@@ -1,7 +1,5 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Route } from "react-router-dom";
-
-// bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./App.module.css";
@@ -10,6 +8,7 @@ import GenerateFacesUsingFacialFeatures from "./containers/GenerateFacesUsingFac
 import CompareFaces from "./containers/CompareFaces/CompareFaces";
 import ExtractFacialFeatures from "./containers/ExtractFacialFeatures/ExtractFacialFeatures";
 import Homepage from "./containers/Homepage/Homepage";
+import Canvas from "./components/Canvas/Canvas";
 
 const App = (props) => {
   return (

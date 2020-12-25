@@ -1,30 +1,28 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
-
-import styles from "./ExtractFacialFeatures.module.css";
-
-import UploadedImage from "../../components/UploadedImage/UploadedImage";
-
 // Bootstrap
 import { Container, Row, Col } from "react-bootstrap";
+
+import styles from "./ExtractFacialFeatures.module.css";
+import UploadedImage from "../../components/UploadedImage/UploadedImage";
+import { extractFeatures } from "./../../services";
 
 const ExtractFacialFeatures = (props) => {
   const [selectedImage, setselectedImage] = useState(null);
   const [error, setError] = useState("");
-
-  const comparedDetails = useSelector(
-    (state) => state.faces.extractedFacialDetails
-  );
+  const [features, setFeatures] = useState(null);
 
   const submitHandler = async () => {
     try {
       setError("");
+      setFeatures(null);
       if (!selectedImage) {
         setError("Please select picture!");
+        console.log(" image not selected ");
         return;
       }
 
-      await facesActions.extractFacialFeatures(selectedImage);
+      const fea = await extractFeatures(selectedImage);
+      setFeatures(fea);
     } catch (error) {
       console.log(error);
       // display some sort of popup etc to display error
@@ -36,9 +34,16 @@ const ExtractFacialFeatures = (props) => {
     <Container>
       <Row>
         <Col sm={6} className={styles.imageUpload}>
-          <UploadedImage name="image"></UploadedImage>
+          <UploadedImage
+            setImage={(image) => {
+              setselectedImage(image);
+            }}
+            name="image"
+          ></UploadedImage>
           <div className={styles.btnContainer}>
-            <div className={styles.btn}>Extract</div>
+            <div onClick={() => submitHandler()} className={styles.btn}>
+              Extract
+            </div>
           </div>
         </Col>
         <Col className={styles.extractionResults}>
@@ -50,27 +55,27 @@ const ExtractFacialFeatures = (props) => {
               </tr>
               <tr>
                 <th>Age</th>
-                <td></td>
+                <td>{features && features.age}</td>
               </tr>
               <tr>
                 <th>Gender</th>
-                <td></td>
+                <td>{features && features.gender}</td>
               </tr>
               <tr>
                 <th>Ethnicity</th>
-                <td></td>
+                <td>{features && features.race}</td>
               </tr>
               <tr>
                 <th>Hair Color</th>
-                <td></td>
+                <td>{features && features.hairColor}</td>
               </tr>
               <tr>
                 <th>Eye Color</th>
-                <td></td>
+                <td>{features && features.eyeColor}</td>
               </tr>
               <tr>
                 <th>Beard</th>
-                <td></td>
+                <td>{features && features.beard}</td>
               </tr>
             </thead>
           </table>
