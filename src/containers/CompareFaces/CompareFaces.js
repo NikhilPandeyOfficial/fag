@@ -8,37 +8,50 @@ import UploadedImage from "../../components/UploadedImage/UploadedImage";
 const CompareFaces = (props) => {
   const [selectedImage1, setselectedImage1] = useState(null);
   const [selectedImage2, setselectedImage2] = useState(null);
-  const [renderImage1, setRenderImage1] = useState(null);
-  const [renderImage2, setRenderImage2] = useState(null);
-
-  // const comparedDetails = useSelector((state) => state.faces.comparedDetails);
 
   const [error, setError] = useState("");
+  const [isResultLoading, setIsResultLoading] = useState(false);
 
   const submitHandler = async () => {
     try {
+      setIsResultLoading(true);
       setError("");
       if (!selectedImage1 || !selectedImage2) {
         setError("Please select both pictures!");
         return;
       }
-
-      // await facesActions.compareFaces(selectedImage1, selectedImage2);
+      // code
     } catch (error) {
       console.log(error);
       // display some sort of popup etc to display error
       setError("Something went wrong!");
     }
+    setIsResultLoading(false);
   };
+
+  if (isResultLoading) {
+    // show loading circle here
+    // return ()
+  }
 
   return (
     <Container>
       <Row>
         <Col className={styles.imageContainer}>
-          <UploadedImage name="image1"></UploadedImage>
+          <UploadedImage
+            setImage={(image) => {
+              setselectedImage1(image);
+            }}
+            name="image1"
+          ></UploadedImage>
         </Col>
         <Col className={styles.imageContainer}>
-          <UploadedImage name="image2"></UploadedImage>
+          <UploadedImage
+            setImage={(image) => {
+              setselectedImage2(image);
+            }}
+            name="image2"
+          ></UploadedImage>
         </Col>
       </Row>
       <Row>

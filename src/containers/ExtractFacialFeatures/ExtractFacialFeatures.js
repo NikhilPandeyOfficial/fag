@@ -10,9 +10,11 @@ const ExtractFacialFeatures = (props) => {
   const [selectedImage, setselectedImage] = useState(null);
   const [error, setError] = useState("");
   const [features, setFeatures] = useState(null);
+  const [isResultLoading, setIsResultLoading] = useState(false);
 
   const submitHandler = async () => {
     try {
+      setIsResultLoading(true);
       setError("");
       setFeatures(null);
       if (!selectedImage) {
@@ -28,7 +30,13 @@ const ExtractFacialFeatures = (props) => {
       // display some sort of popup etc to display error
       setError("Something went wrong!");
     }
+    setIsResultLoading(false);
   };
+
+  if (isResultLoading) {
+    // show loading circle here
+    // return ()
+  }
 
   return (
     <Container>

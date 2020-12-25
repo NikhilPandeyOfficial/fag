@@ -38,12 +38,14 @@ const GenerateFacesUsingFacialFeatures = (props) => {
   const [prediction, setPrediction] = useState(null);
 
   const [error, setError] = useState("");
-  const [isFirstTime, setIsFirstTime] = useState(true);
+  const [isResultLoading, setIsResultLoading] = useState(false);
 
+  const [isFirstTime, setIsFirstTime] = useState(true);
   const [filterClasses, setFilterClasses] = useState(styles.hideFilters);
 
   const submitHandler = async () => {
     try {
+      setIsResultLoading(true);
       setError("");
       console.log("In submit handler");
 
@@ -64,6 +66,7 @@ const GenerateFacesUsingFacialFeatures = (props) => {
       // display some sort of popup etc to display error
       setError("Something went wrong!");
     }
+    setIsResultLoading(false);
     setIsFirstTime(false);
   };
 
@@ -84,6 +87,11 @@ const GenerateFacesUsingFacialFeatures = (props) => {
       setFilterClasses(styles.showFilters);
     else setFilterClasses(styles.hideFilters);
   };
+
+  if (isResultLoading) {
+    // show loading circle here
+    // return ()
+  }
 
   return (
     <div className={styles.cont}>
