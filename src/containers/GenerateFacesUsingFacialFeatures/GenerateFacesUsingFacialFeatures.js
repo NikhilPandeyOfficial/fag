@@ -58,7 +58,7 @@ const GenerateFacesUsingFacialFeatures = (props) => {
         facialHair: getKeyByValue(beardMapping, facialHair),
       };
 
-      console.log(Object.values(facialInputs));
+      // console.log(Object.values(facialInputs));
       const prediction = await generateFace(Object.values(facialInputs));
       setPrediction(prediction);
     } catch (error) {

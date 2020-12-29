@@ -8,7 +8,7 @@ const Canvas = ({ prediction }) => {
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
-    const imd = new ImageData(prediction, 400);
+    const imd = new ImageData(prediction, 150);
     context.putImageData(imd, 0, 0, 0, 0, 200, 200);
   }, []);
 

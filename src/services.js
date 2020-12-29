@@ -111,17 +111,65 @@ export const extractFeatures = async (image) => {
   }
 };
 
+const getRandomInt = (min, max) => {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
+};
 // will return UintClampArray
 export const generateFace = async (facialInputs) => {
   const model = await tf.loadLayersModel(
-    "https://nikcnnmodels.s3.ap-south-1.amazonaws.com/model.json"
+    "https://nikcnnmodels.s3.ap-south-1.amazonaws.com/final-decoder-for-face-generation/model.json"
   );
 
-  let inp = await tf.tensor1d(facialInputs);
+  // let tempArr = [];
+  // for (let i = 0; i < 55; i++) {
+  //   // if (i % 2 == 0)
+  //   tempArr.push(getRandomInt(0, 1));
+  //   // else tempArr.push(1);
+  // }
+  let tempArr = [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    0,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    0,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+  ];
+  for (let i = 0; i < 25; i++) tempArr.push(0);
+  console.log(tempArr);
+  let inp = await tf.tensor1d(tempArr);
+
+  // let inp = await tf.tensor1d(facialInputs);
   inp = await tf.expandDims(inp, 0);
 
   let pred = await model.predict(inp);
-  pred = await pred.reshape([200, 200, 3]);
+  pred = await pred.reshape([150, 150, 3]);
+  pred.print();
   pred = await tf.browser.toPixels(pred);
 
   return pred;
