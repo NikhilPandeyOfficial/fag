@@ -5,6 +5,7 @@ import {
   FilterListRounded as FilterIcon,
   CloseRounded as Close,
 } from "@material-ui/icons";
+import _ from "lodash";
 
 import FilterCard from "../../components/FilterCard/FilterCard";
 import FaceCard from "../../components/FaceCard/Facecard";
@@ -40,7 +41,7 @@ const GenerateFacesUsingFacialFeatures = (props) => {
   const [facialHair, setFacialHair] = useState(null);
   const [eyeGlasses, setEyeGlasses] = useState(null);
 
-  const [prediction, setPrediction] = useState(null);
+  const [prediction, setPrediction] = useState([]);
 
   const [error, setError] = useState("");
   const [isResultLoading, setIsResultLoading] = useState(false);
@@ -51,8 +52,7 @@ const GenerateFacesUsingFacialFeatures = (props) => {
     try {
       setIsResultLoading(true);
       setError("");
-      setPrediction(null);
-      console.log("In submit handler");
+      // setPrediction([]);
 
       const facialInputs = {
         age,
@@ -64,8 +64,12 @@ const GenerateFacesUsingFacialFeatures = (props) => {
       };
 
       console.log(facialInputs);
-      const prediction = await generateFace(facialInputs);
-      setPrediction(prediction);
+      for (let i = 0; i < 5; i++) {
+        const pred = await generateFace(facialInputs).then((pred) =>
+          setPrediction([...prediction, pred])
+        );
+        await setPrediction([...prediction, pred]);
+      }
     } catch (error) {
       console.log(error);
       // display some sort of popup etc to display error
@@ -195,7 +199,8 @@ const GenerateFacesUsingFacialFeatures = (props) => {
                   <div className={styles.msg}>Let's Make Some Faces!</div>
                 </div>
               )}
-              {prediction && <Canvas prediction={prediction} />}
+              {prediction &&
+                _.map(prediction, (val) => <Canvas prediction={val} />)}
             </Container>
           </Col>
         </Row>
