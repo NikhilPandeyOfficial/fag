@@ -10,56 +10,61 @@ import FilterCard from "../../components/FilterCard/FilterCard";
 import FaceCard from "../../components/FaceCard/Facecard";
 import Filter from "../../components/Filter/Filter";
 import styles from "./GenerateFacesUsingFacialFeatures.module.css";
-import {
-  generateFace,
-  ageMapping,
-  genderMapping,
-  raceMapping,
-  eyeColorMapping,
-  hairColorMapping,
-  beardMapping,
-} from "../../services";
+import { generateFace } from "./../../services";
 // bootstrap
 import { Container, Row, Col } from "react-bootstrap";
 
 import Canvas from "./../../components/Canvas/Canvas";
 
-const getKeyByValue = (obj, value) => {
-  return Number.parseInt(Object.keys(obj).find((key) => obj[key] === value));
-};
+const ageList = [
+    "0-2yrs",
+    "4-6yrs",
+    "8-12yrs",
+    "15-20yrs",
+    "25-32yrs",
+    "38-43yrs",
+    "48-53yrs",
+    "60-100yrs",
+  ],
+  genderList = ["Male", "Female"],
+  raceList = ["Asian", "Black", "Hispanic", "Indian", "White"],
+  hairColorList = ["Black", "Blonde", "Brown", "Gray"],
+  facialHairList = ["Beard", "No-Beard"],
+  eyeGlassesList = ["EyeGlasses", "No-EyeGlasses"];
 
 const GenerateFacesUsingFacialFeatures = (props) => {
   const [age, setAge] = useState(null);
   const [gender, setGender] = useState(null);
-  const [ethnicity, setEthnicity] = useState(null);
-  const [eyeColor, setEyeColor] = useState(null);
+  const [race, setRace] = useState(null);
   const [hairColor, setHairColor] = useState(null);
   const [facialHair, setFacialHair] = useState(null);
+  const [eyeGlasses, setEyeGlasses] = useState(null);
+
   const [prediction, setPrediction] = useState(null);
 
   const [error, setError] = useState("");
   const [isResultLoading, setIsResultLoading] = useState(false);
 
-  const [isFirstTime, setIsFirstTime] = useState(true);
   const [filterClasses, setFilterClasses] = useState(styles.hideFilters);
 
   const submitHandler = async () => {
     try {
       setIsResultLoading(true);
       setError("");
+      setPrediction(null);
       console.log("In submit handler");
 
       const facialInputs = {
-        age: getKeyByValue(ageMapping, age),
-        gender: getKeyByValue(genderMapping, gender),
-        ethnicity: getKeyByValue(raceMapping, ethnicity),
-        eyeColor: getKeyByValue(eyeColorMapping, eyeColor),
-        hairColor: getKeyByValue(hairColorMapping, hairColor),
-        facialHair: getKeyByValue(beardMapping, facialHair),
+        age,
+        gender,
+        race,
+        hairColor,
+        facialHair,
+        eyeGlasses,
       };
 
-      // console.log(Object.values(facialInputs));
-      const prediction = await generateFace(Object.values(facialInputs));
+      console.log(facialInputs);
+      const prediction = await generateFace(facialInputs);
       setPrediction(prediction);
     } catch (error) {
       console.log(error);
@@ -67,7 +72,6 @@ const GenerateFacesUsingFacialFeatures = (props) => {
       setError("Something went wrong!");
     }
     setIsResultLoading(false);
-    setIsFirstTime(false);
   };
 
   const closeHandler = (event) => {
@@ -117,7 +121,7 @@ const GenerateFacesUsingFacialFeatures = (props) => {
                 <FilterCard
                   close={closeHandler}
                   name={"gender"}
-                  options={Object.values(genderMapping)}
+                  options={genderList}
                   onChange={(gender) => {
                     setGender(gender);
                   }}
@@ -127,19 +131,19 @@ const GenerateFacesUsingFacialFeatures = (props) => {
                 <FilterCard
                   close={closeHandler}
                   name={"age"}
-                  options={Object.values(ageMapping)}
+                  options={ageList}
                   onChange={(age) => {
                     setAge(age);
                   }}
                 ></FilterCard>
 
-                {/* Ethnicity */}
+                {/* Race */}
                 <FilterCard
                   close={closeHandler}
-                  name={"ethnicity"}
-                  options={Object.values(raceMapping)}
-                  onChange={(ethnicity) => {
-                    setEthnicity(ethnicity);
+                  name={"race"}
+                  options={raceList}
+                  onChange={(race) => {
+                    setRace(race);
                   }}
                 ></FilterCard>
 
@@ -147,19 +151,19 @@ const GenerateFacesUsingFacialFeatures = (props) => {
                 <FilterCard
                   close={closeHandler}
                   name="hair color"
-                  options={Object.values(hairColorMapping)}
+                  options={hairColorList}
                   onChange={(hairColor) => {
                     setHairColor(hairColor);
                   }}
                 ></FilterCard>
 
-                {/* Eye Color */}
+                {/* Eye Glasses */}
                 <FilterCard
                   close={closeHandler}
-                  name={"eye color"}
-                  options={Object.values(eyeColorMapping)}
-                  onChange={(eyeColor) => {
-                    setEyeColor(eyeColor);
+                  name={"eye glasses"}
+                  options={eyeGlassesList}
+                  onChange={(val) => {
+                    setEyeGlasses(val);
                   }}
                 ></FilterCard>
 
@@ -167,17 +171,18 @@ const GenerateFacesUsingFacialFeatures = (props) => {
                 <FilterCard
                   close={closeHandler}
                   name={"facial hair"}
-                  options={Object.values(beardMapping)}
-                  onChange={(facialHair) => {
-                    setFacialHair(facialHair);
+                  options={facialHairList}
+                  onChange={(val) => {
+                    setFacialHair(val);
                   }}
                 ></FilterCard>
               </React.Fragment>
 
+              {error && <div>This is error statement</div>}
               {/* Button */}
               <div className={styles.btnContainer}>
                 <div className={styles.btn} onClick={submitHandler}>
-                  {isFirstTime ? "Generate" : "Modify Faces"}
+                  {"Generate"}
                 </div>
               </div>
             </Container>

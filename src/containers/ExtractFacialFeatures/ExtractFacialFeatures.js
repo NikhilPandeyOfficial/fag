@@ -49,6 +49,7 @@ const ExtractFacialFeatures = (props) => {
             name="image"
           ></UploadedImage>
           <div className={styles.btnContainer}>
+            {error && <div> This is error statemet </div>}
             <div onClick={() => submitHandler()} className={styles.btn}>
               Extract
             </div>
@@ -70,7 +71,7 @@ const ExtractFacialFeatures = (props) => {
                 <td>{features && features.gender}</td>
               </tr>
               <tr>
-                <th>Ethnicity</th>
+                <th>Race</th>
                 <td>{features && features.race}</td>
               </tr>
               <tr>

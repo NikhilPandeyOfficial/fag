@@ -19,10 +19,10 @@ const filter = (props) => {
         options={["child", "young adult", "adult", "old"]}
       ></FilterCard>
 
-      {/* Ethnicity */}
+      {/* Race */}
       <FilterCard
         close={props.close}
-        name={"ethnicity"}
+        name={"race"}
         options={["asian", "black", "latino", "white"]}
       ></FilterCard>
 

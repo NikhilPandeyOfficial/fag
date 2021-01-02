@@ -56,6 +56,7 @@ const CompareFaces = (props) => {
       </Row>
       <Row>
         <Col className={styles.btnContainer}>
+          {error && <div> This is error statemet </div>}
           <div className={styles.btn} onClick={submitHandler}>
             Compare
           </div>
