@@ -258,15 +258,11 @@ export const compareFaces = async (image1, image2) => {
     let sim = 0;
 
     for (let i = 0; i < 55; i++) {
-      // console.log(pred1[0][i] + " " + pred2[0][i]);
-      // console.log(typeof pred1[0][i]);
       if (pred1[0][i].toFixed(2) === pred2[0][i].toFixed(2)) sim++;
     }
 
-    console.log(pred1);
-    console.log(pred2);
-    // const ind = await pred[0].indexOf(1);
-    // return mapping[ind];
+    // console.log(pred1);
+    // console.log(pred2);
     return (sim / 55) * 100;
   } catch (error) {
     console.log(error);
