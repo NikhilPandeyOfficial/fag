@@ -2,6 +2,7 @@ import React, { useState } from "react";
 // Bootstrap
 import { Container, Row, Col } from "react-bootstrap";
 
+import { compareFaces } from "../../services";
 import styles from "./CompareFaces.module.css";
 import UploadedImage from "../../components/UploadedImage/UploadedImage";
 
@@ -11,6 +12,7 @@ const CompareFaces = (props) => {
 
   const [error, setError] = useState("");
   const [isResultLoading, setIsResultLoading] = useState(false);
+  const [result, setResult] = useState("");
 
   const submitHandler = async () => {
     try {
@@ -20,7 +22,11 @@ const CompareFaces = (props) => {
         setError("Please select both pictures!");
         return;
       }
-      // code
+      console.log("in submit handler");
+      console.log(selectedImage1 + " " + selectedImage2);
+      const res = await compareFaces(selectedImage1, selectedImage2);
+      console.log(res);
+      setResult(res);
     } catch (error) {
       console.log(error);
       // display some sort of popup etc to display error
@@ -61,6 +67,10 @@ const CompareFaces = (props) => {
             Compare
           </div>
         </Col>
+      </Row>
+
+      <Row className={styles.btnContainer}>
+        {result && <div> {`${result} %`} </div>}
       </Row>
 
       {/**you can use the table structure from 'ExtractFacialFeatures.js' for displaying info. */}
