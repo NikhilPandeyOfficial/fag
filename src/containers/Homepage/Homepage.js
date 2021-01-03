@@ -29,25 +29,18 @@ const Homepage = (props) => {
                   </div>
                 </Link>
               </Col>
-              <Col className={styles.col}>
-                <Link to="/compare-faces">
-                  <div className={styles.box2}>
-                    Compare <br /> Faces
-                  </div>
-                </Link>
-              </Col>
             </Row>
             <Row className={styles.row}>
               <Col className={styles.col}>
-                <Link to="/extract-facial-features">
+                <Link to="/compare-faces">
                   <div className={styles.box3}>
-                    Extract
-                    <br /> Features
+                    Compare
+                    <br /> Faces
                   </div>
                 </Link>
               </Col>
               <Col className={styles.col}>
-                <Link href="#">
+                <Link to="/extract-facial-features">
                   <div className={styles.box4}>
                     Extract <br /> Features
                   </div>

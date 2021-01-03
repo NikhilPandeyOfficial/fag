@@ -15,7 +15,8 @@ import { generateFace } from "./../../services";
 import Loader from "../../components/Loader/Loader";
 // bootstrap
 import { Container, Row, Col } from "react-bootstrap";
-
+import { inputArrayMaker } from "../../servicesInputArrayMaker";
+import { arrayUpdater } from "../../servicesArrayUpdater";
 import Canvas from "./../../components/Canvas/Canvas";
 
 const ageList = [
@@ -47,9 +48,27 @@ const GenerateFacesUsingFacialFeatures = (props) => {
   const [error, setError] = useState("");
   const [filterClasses, setFilterClasses] = useState(styles.hideFilters);
   const [loader, setLoader] = useState(null);
+  const [disableFacialHair, setDisableFacialHair] = useState(false);
+
+  // testing
+  const [pastFacialInputs, setPastFacialInputs] = useState([
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+  ]);
+  const [pastArrayCollection, setPastArrayCollection] = useState(null);
+
+  useEffect(() => {
+    if (gender == "Female") setDisableFacialHair(true);
+    else setDisableFacialHair(false);
+  }, [gender]);
 
   const submitHandler = async () => {
     try {
+      showFiltersHandler();
       setLoader(<Loader></Loader>);
       setError("");
       // setPrediction([]);
@@ -63,7 +82,11 @@ const GenerateFacesUsingFacialFeatures = (props) => {
         eyeGlasses,
       };
 
-      console.log(facialInputs);
+      const face = Object.keys(facialInputs).map((key) => facialInputs[key]);
+      // console.log(face, pastFacialInputs, pastArrayCollection[0]);
+
+      // console.log(arrayUpdater(face, pastFacialInputs, pastArrayCollection[0]));
+
       // OLD CODE
       // for (let i = 0; i < 5; i++) {
       //   const pred = await generateFace(facialInputs);
@@ -72,12 +95,34 @@ const GenerateFacesUsingFacialFeatures = (props) => {
 
       // NEW CODE
       const newPred = [];
+      const store = [];
       setPrediction([...newPred]);
-      for (let i = 0; i < 15; i++) {
-        const pred = await generateFace(facialInputs);
-        newPred.push(pred);
+
+      if (pastArrayCollection == null) {
+        for (let i = 0; i < 15; i++) {
+          let inputArray = inputArrayMaker(facialInputs);
+          const pred = await generateFace(inputArray);
+          newPred.push(pred);
+          store.push(inputArray);
+        }
+      } else {
+        for (let i = 0; i < 15; i++) {
+          let inputArray = arrayUpdater(
+            face,
+            pastFacialInputs,
+            pastArrayCollection[i]
+          );
+          const pred = await generateFace(inputArray);
+          newPred.push(pred);
+          store.push(inputArray);
+        }
       }
+
+      setPastArrayCollection([...store]);
       setPrediction([...newPred]);
+      setPastFacialInputs([
+        ...Object.keys(facialInputs).map((key) => facialInputs[key]),
+      ]);
     } catch (error) {
       console.log(error);
       // display some sort of popup etc to display error
@@ -121,11 +166,12 @@ const GenerateFacesUsingFacialFeatures = (props) => {
                 onClick={showFiltersHandler}
               ></Close>
             </div>
-            <Container>
+            <Container className={styles.stableScroll}>
               {/* Filters */}
               <React.Fragment>
                 {/* Gender */}
                 <FilterCard
+                  disable={false}
                   close={closeHandler}
                   name={"gender"}
                   options={genderList}
@@ -136,6 +182,7 @@ const GenerateFacesUsingFacialFeatures = (props) => {
 
                 {/* Age */}
                 <FilterCard
+                  disable={false}
                   close={closeHandler}
                   name={"age"}
                   options={ageList}
@@ -146,6 +193,7 @@ const GenerateFacesUsingFacialFeatures = (props) => {
 
                 {/* Race */}
                 <FilterCard
+                  disable={false}
                   close={closeHandler}
                   name={"race"}
                   options={raceList}
@@ -156,6 +204,7 @@ const GenerateFacesUsingFacialFeatures = (props) => {
 
                 {/* Hair color */}
                 <FilterCard
+                  disable={false}
                   close={closeHandler}
                   name="hair color"
                   options={hairColorList}
@@ -166,6 +215,7 @@ const GenerateFacesUsingFacialFeatures = (props) => {
 
                 {/* Eye Glasses */}
                 <FilterCard
+                  disable={false}
                   close={closeHandler}
                   name={"eye glasses"}
                   options={eyeGlassesList}
@@ -176,6 +226,7 @@ const GenerateFacesUsingFacialFeatures = (props) => {
 
                 {/* Facial Hair */}
                 <FilterCard
+                  disable={disableFacialHair}
                   close={closeHandler}
                   name={"facial hair"}
                   options={facialHairList}
@@ -185,9 +236,7 @@ const GenerateFacesUsingFacialFeatures = (props) => {
                 ></FilterCard>
               </React.Fragment>
 
-              {error && (
-                <div className={styles.error}>This is error statement</div>
-              )}
+              {error && <div className={styles.error}>{error}</div>}
               {/* Button */}
               <div className={styles.btnContainer}>
                 <div className={styles.btn} onClick={submitHandler}>
@@ -198,12 +247,6 @@ const GenerateFacesUsingFacialFeatures = (props) => {
           </Col>
           <Col className={styles.col_results}>
             <Container className={styles.resultContainer}>
-              {!prediction && (
-                <div className={styles.centered}>
-                  <FaceIcon className={styles.faceIcon} />
-                  <div className={styles.msg}>Let's Make Some Faces!</div>
-                </div>
-              )}
               <Row className={styles.resultRow}>
                 {loader}
                 {prediction &&

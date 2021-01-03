@@ -35,7 +35,7 @@ const CompareFaces = (props) => {
   }
 
   return (
-    <Container>
+    <Container className={styles.cont}>
       <Row>
         <Col className={styles.imageContainer}>
           <UploadedImage

@@ -14,6 +14,10 @@
 .mainHeader {
   background-color: #1d1d1d;
   width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
 }
 
 a {
@@ -44,7 +48,7 @@ a {
   width: 100%;
   height: 5px;
   background-color: #4294ff;
-  bottom: -10px;
+  bottom: -12px;
   left: 0;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -133,6 +137,19 @@ a {
   color: #e6ecf0;
   background-color: transparent;
   pointer-events: none;
+}
+
+.linkGroupShow {
+  background-color: transparent;
+  height: 100%;
+}
+
+.linkGroupShow a {
+  margin-left: clamp(3rem, 2vw, 5rem);
+}
+
+.linkGroupHide {
+  display: none;
 }
 
 @media screen and (max-width: 767px) {

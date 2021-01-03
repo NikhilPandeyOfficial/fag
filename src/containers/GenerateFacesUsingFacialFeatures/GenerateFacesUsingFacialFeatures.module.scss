@@ -44,6 +44,8 @@
   background-color: $dark;
   color: $bg;
   display: none;
+  // z-index: 11;
+  margin-top: 45px;
 
   & .filterBtn {
     width: 90px;
@@ -78,13 +80,14 @@
 }
 
 .showFilters {
-  min-height: calc(100vh - 45px);
+  height: calc(100vh - 45px);
   padding: 1.5rem;
   background-color: $dark;
   overflow-y: auto;
   position: fixed;
   width: 100vw;
-  z-index: 10;
+  margin-top: 45px;
+  z-index: 9;
 }
 
 .closeBtn {
@@ -100,13 +103,15 @@
 
 .hideFilters {
   display: none;
-  min-height: calc(100vh - 45px);
+  height: calc(100vh - 45px);
   padding: 1.5rem;
   background-color: $dark;
   overflow-y: auto;
-  position: fixed;
+  position: sticky !important;
+  top: 45px;
   width: 100vw;
-  z-index: 10;
+  margin-top: 45px;
+  z-index: 9;
 }
 
 .hideFilters > div {
@@ -119,6 +124,7 @@
 .col_results {
   background-color: $bg;
   padding: 1rem;
+  margin-top: 45px;
 }
 
 .error {
@@ -144,12 +150,10 @@
   grid-template-columns: repeat(auto-fit, minmax(calc(150px + 2rem), 1fr));
 }
 
-.showLoader {
-  display: block;
-}
-
-.hideLoader {
-  display: none;
+.stableScroll {
+  background-color: seagreen;
+  top: 0;
+  position: sticky;
 }
 
 @media screen and (max-width: 575px) {
@@ -173,5 +177,7 @@
   .showFilters {
     display: block;
     position: relative;
+    position: sticky !important;
+    top: 45px;
   }
 }
