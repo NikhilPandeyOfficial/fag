@@ -65,9 +65,7 @@ const GenerateFacesUsingFacialFeatures = (props) => {
 
       console.log(facialInputs);
       for (let i = 0; i < 5; i++) {
-        const pred = await generateFace(facialInputs).then((pred) =>
-          setPrediction([...prediction, pred])
-        );
+        const pred = await generateFace(facialInputs);
         await setPrediction([...prediction, pred]);
       }
     } catch (error) {
