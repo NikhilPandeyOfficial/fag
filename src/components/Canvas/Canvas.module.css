@@ -1,0 +1,8 @@
+.canvas {
+  margin: 1rem;
+  border: 5px white solid;
+  border-radius: 10px;
+  -webkit-box-shadow: 10px 10px 15px rgba(193, 203, 208, 0.7), -10px -10px 15px rgba(255, 255, 255, 0.7), inset 10px 10px 15px rgba(193, 203, 208, 0), inset -10px -10px 15px rgba(255, 255, 255, 0);
+          box-shadow: 10px 10px 15px rgba(193, 203, 208, 0.7), -10px -10px 15px rgba(255, 255, 255, 0.7), inset 10px 10px 15px rgba(193, 203, 208, 0), inset -10px -10px 15px rgba(255, 255, 255, 0);
+}
+/*# sourceMappingURL=Canvas.module.css.map */

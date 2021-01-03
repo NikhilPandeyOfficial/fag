@@ -14,9 +14,9 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   background-color: #222222;
 }
 
@@ -28,6 +28,10 @@
   text-align: center;
   color: #ffffff;
   cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .btn:hover {
@@ -86,7 +90,7 @@
 }
 
 .showFilters {
-  height: calc(100vh - 45px);
+  min-height: calc(100vh - 45px);
   padding: 1.5rem;
   background-color: #222222;
   overflow-y: auto;
@@ -108,7 +112,7 @@
 
 .hideFilters {
   display: none;
-  height: calc(100vh - 45px);
+  min-height: calc(100vh - 45px);
   padding: 1.5rem;
   background-color: #222222;
   overflow-y: auto;
@@ -128,6 +132,33 @@
 .col_results {
   background-color: #e6ecf0;
   padding: 1rem;
+}
+
+.error {
+  text-align: center;
+  background: repeating-linear-gradient(45deg, #ffd5d2, #ffd5d2 2px, #ffb3b3 2px, #ffb3b3 4px);
+  color: red;
+  margin: 1rem 0;
+  border: 1px solid red;
+  padding: 1rem;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.resultRow {
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  -ms-grid-columns: (minmax(calc(150px + 2rem), 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(calc(150px + 2rem), 1fr));
+}
+
+.showLoader {
+  display: block;
+}
+
+.hideLoader {
+  display: none;
 }
 
 @media screen and (max-width: 575px) {

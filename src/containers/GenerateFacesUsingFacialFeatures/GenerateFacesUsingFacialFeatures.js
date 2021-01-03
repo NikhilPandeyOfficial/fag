@@ -12,6 +12,7 @@ import FaceCard from "../../components/FaceCard/Facecard";
 import Filter from "../../components/Filter/Filter";
 import styles from "./GenerateFacesUsingFacialFeatures.module.css";
 import { generateFace } from "./../../services";
+import Loader from "../../components/Loader/Loader";
 // bootstrap
 import { Container, Row, Col } from "react-bootstrap";
 
@@ -44,13 +45,12 @@ const GenerateFacesUsingFacialFeatures = (props) => {
   const [prediction, setPrediction] = useState([]);
 
   const [error, setError] = useState("");
-  const [isResultLoading, setIsResultLoading] = useState(false);
-
   const [filterClasses, setFilterClasses] = useState(styles.hideFilters);
+  const [loader, setLoader] = useState(null);
 
   const submitHandler = async () => {
     try {
-      setIsResultLoading(true);
+      setLoader(<Loader></Loader>);
       setError("");
       // setPrediction([]);
 
@@ -64,16 +64,26 @@ const GenerateFacesUsingFacialFeatures = (props) => {
       };
 
       console.log(facialInputs);
-      for (let i = 0; i < 5; i++) {
+      // OLD CODE
+      // for (let i = 0; i < 5; i++) {
+      //   const pred = await generateFace(facialInputs);
+      //   await setPrediction([...prediction, pred]);
+      // }
+
+      // NEW CODE
+      const newPred = [];
+      setPrediction([...newPred]);
+      for (let i = 0; i < 15; i++) {
         const pred = await generateFace(facialInputs);
-        await setPrediction([...prediction, pred]);
+        newPred.push(pred);
       }
+      setPrediction([...newPred]);
     } catch (error) {
       console.log(error);
       // display some sort of popup etc to display error
       setError("Something went wrong!");
     }
-    setIsResultLoading(false);
+    setLoader(null);
   };
 
   const closeHandler = (event) => {
@@ -93,11 +103,6 @@ const GenerateFacesUsingFacialFeatures = (props) => {
       setFilterClasses(styles.showFilters);
     else setFilterClasses(styles.hideFilters);
   };
-
-  if (isResultLoading) {
-    // show loading circle here
-    // return ()
-  }
 
   return (
     <div className={styles.cont}>
@@ -180,7 +185,9 @@ const GenerateFacesUsingFacialFeatures = (props) => {
                 ></FilterCard>
               </React.Fragment>
 
-              {error && <div>This is error statement</div>}
+              {error && (
+                <div className={styles.error}>This is error statement</div>
+              )}
               {/* Button */}
               <div className={styles.btnContainer}>
                 <div className={styles.btn} onClick={submitHandler}>
@@ -190,15 +197,20 @@ const GenerateFacesUsingFacialFeatures = (props) => {
             </Container>
           </Col>
           <Col className={styles.col_results}>
-            <Container>
+            <Container className={styles.resultContainer}>
               {!prediction && (
                 <div className={styles.centered}>
                   <FaceIcon className={styles.faceIcon} />
                   <div className={styles.msg}>Let's Make Some Faces!</div>
                 </div>
               )}
-              {prediction &&
-                _.map(prediction, (val) => <Canvas prediction={val} />)}
+              <Row className={styles.resultRow}>
+                {loader}
+                {prediction &&
+                  _.map(prediction, (val, ind) => (
+                    <Canvas prediction={val} key={`canvas${ind}`} />
+                  ))}
+              </Row>
             </Container>
           </Col>
         </Row>

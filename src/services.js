@@ -213,6 +213,7 @@ const inputArrayMaker = (facialInputs) => {
 
 // will return UintClampArray
 export const generateFace = async (facialInputs) => {
+  tf.engine().startScope();
   const model = await tf.loadLayersModel(
     "https://nikcnnmodels.s3.ap-south-1.amazonaws.com/final-decoder-for-face-generation/model.json"
   );
@@ -224,6 +225,6 @@ export const generateFace = async (facialInputs) => {
   pred = await pred.reshape([150, 150, 3]);
   // pred.print();
   pred = await tf.browser.toPixels(pred);
-
+  tf.engine().endScope();
   return pred;
 };
