@@ -30,6 +30,10 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -50,6 +54,43 @@
 
 .btnContainer .btn:hover {
   background-color: #1b53ff;
+}
+
+.loader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.resultContainer {
+  text-align: center;
+  font-size: 5rem;
+  font-weight: bolder;
+}
+
+.resultContainer > div {
+  display: inline;
+  background: -webkit-gradient(linear, left top, right top, from(#1b53ff), to(#03d3c8));
+  background: linear-gradient(90deg, #1b53ff, #03d3c8);
+  background-clip: text;
+  color: transparent;
+}
+
+.error {
+  text-align: center;
+  background: repeating-linear-gradient(45deg, #ffd5d2, #ffd5d2 2px, #ffb3b3 2px, #ffb3b3 4px);
+  color: red;
+  margin: 1rem 0;
+  border: 1px solid red;
+  padding: 1rem;
+  border-radius: 10px;
+  font-weight: bold;
 }
 
 @media screen and (max-width: 500px) {

@@ -21,6 +21,7 @@
 
 .btnContainer {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   & .btn {
     display: inline-block;
@@ -37,6 +38,42 @@
       background-color: $btnHover;
     }
   }
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.resultContainer {
+  text-align: center;
+  font-size: 5rem;
+  font-weight: bolder;
+
+  & > div {
+    display: inline;
+    background: linear-gradient(90deg, $btnHover, rgb(3, 211, 200));
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+.error {
+  text-align: center;
+  background: repeating-linear-gradient(
+    45deg,
+    #ffd5d2,
+    #ffd5d2 2px,
+    #ffb3b3 2px,
+    #ffb3b3 4px
+  );
+  color: red;
+  margin: 1rem 0;
+  border: 1px solid red;
+  padding: 1rem;
+  border-radius: 10px;
+  font-weight: bold;
 }
 
 @media screen and (max-width: 500px) {
