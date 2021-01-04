@@ -13,7 +13,7 @@
 
 .btnContainer {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   background-color: $dark;
 }
 
@@ -25,6 +25,7 @@
   text-align: center;
   color: #ffffff;
   cursor: pointer;
+  user-select: none;
 
   &:hover {
     background-color: $btnHover;
@@ -37,33 +38,14 @@
   font-family: "Montserrat-medium", sans-serif;
 }
 
-// .imageContainer {
-//   width: 276px;
-//   height: 310px;
-//   margin: 10px;
-//   border-radius: 25px;
-//   background-color: inherit;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   border-top: 0.1px solid #000000;
-// }
-
-// .image {
-//   width: 100%;
-//   height: 100%;
-//   padding: 10px;
-//   border-radius: 25px;
-//   background-color: inherit;
-//   background-size: cover;
-// }
-
 .col_filterResponsive {
   position: relative;
   padding: 0.5rem;
   background-color: $dark;
   color: $bg;
   display: none;
+  // z-index: 11;
+  margin-top: 45px;
 
   & .filterBtn {
     width: 90px;
@@ -104,7 +86,8 @@
   overflow-y: auto;
   position: fixed;
   width: 100vw;
-  z-index: 10;
+  margin-top: 45px;
+  z-index: 9;
 }
 
 .closeBtn {
@@ -124,9 +107,11 @@
   padding: 1.5rem;
   background-color: $dark;
   overflow-y: auto;
-  position: fixed;
+  position: sticky !important;
+  top: 45px;
   width: 100vw;
-  z-index: 10;
+  margin-top: 45px;
+  z-index: 9;
 }
 
 .hideFilters > div {
@@ -139,6 +124,36 @@
 .col_results {
   background-color: $bg;
   padding: 1rem;
+  margin-top: 45px;
+}
+
+.error {
+  text-align: center;
+  background: repeating-linear-gradient(
+    45deg,
+    #ffd5d2,
+    #ffd5d2 2px,
+    #ffb3b3 2px,
+    #ffb3b3 4px
+  );
+  color: red;
+  margin: 1rem 0;
+  border: 1px solid red;
+  padding: 1rem;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.resultRow {
+  display: grid;
+  place-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(calc(150px + 2rem), 1fr));
+}
+
+.stableScroll {
+  background-color: seagreen;
+  top: 0;
+  position: sticky;
 }
 
 @media screen and (max-width: 575px) {
@@ -162,5 +177,7 @@
   .showFilters {
     display: block;
     position: relative;
+    position: sticky !important;
+    top: 45px;
   }
 }

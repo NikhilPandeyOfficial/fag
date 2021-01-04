@@ -1,0 +1,146 @@
+.loading {
+  height: 300px;
+  width: 300px;
+
+  & .box0 {
+    animation: boxAnim0 6s infinite ease-in-out;
+    // fill: #181818;
+    fill: #181818;
+  }
+  & .box1 {
+    animation: boxAnim1 6s infinite ease-in-out;
+    // fill: #da1414;
+    fill: #3a3a3a;
+  }
+  & .box2 {
+    animation: boxAnim2 6s infinite ease-in-out;
+    // fill: #ffdd93;
+    fill: #696969;
+  }
+}
+
+@keyframes boxAnim0 {
+  0% {
+    transform: translateX(0);
+  }
+  8% {
+    transform: translateX(0);
+  }
+  16% {
+    transform: translateX(240px);
+  }
+  24% {
+    transform: translateX(240px);
+  }
+  32% {
+    transform: translateX(240px);
+  }
+  40% {
+    transform: translate(240px, 240px);
+  }
+  48% {
+    transform: translate(240px, 240px);
+  }
+  57% {
+    transform: translate(240px, 240px);
+  }
+  65% {
+    transform: translateY(240px);
+  }
+  73% {
+    transform: translateY(240px);
+  }
+  82% {
+    transform: translateY(240px);
+  }
+  90% {
+    transform: translateY(0);
+  }
+  98% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes boxAnim1 {
+  0% {
+    transform: translateX(0);
+  }
+  8% {
+    transform: translateX(0);
+  }
+  16% {
+    transform: translateX(0);
+  }
+  24% {
+    transform: translateY(-240px);
+  }
+  32% {
+    transform: translateY(-240px);
+  }
+  40% {
+    transform: translateY(-240px);
+  }
+  48% {
+    transform: translate(240px, -240px);
+  }
+  57% {
+    transform: translate(240px, -240px);
+  }
+  65% {
+    transform: translate(240px, -240px);
+  }
+  73% {
+    transform: translate(240px, 0);
+  }
+  82% {
+    transform: translate(240px, 0);
+  }
+  90% {
+    transform: translate(240px, 0);
+  }
+  98% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes boxAnim2 {
+  0% {
+    transform: translateX(0);
+  }
+  8% {
+    transform: translateY(240px);
+  }
+  16% {
+    transform: translateY(240px);
+  }
+  24% {
+    transform: translateY(240px);
+  }
+  32% {
+    transform: translate(-240px, 240px);
+  }
+  40% {
+    transform: translate(-240px, 240px);
+  }
+  48% {
+    transform: translate(-240px, 240px);
+  }
+  57% {
+    transform: translate(-240px, 0);
+  }
+  65% {
+    transform: translate(-240px, 0);
+  }
+  73% {
+    transform: translate(-240px, 0);
+  }
+  82% {
+    transform: translate(0px, 0);
+  }
+  90% {
+    transform: translate(0px, 0);
+  }
+  98% {
+    transform: translate(0px, 0);
+  }
+}

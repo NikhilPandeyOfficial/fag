@@ -24,6 +24,7 @@ const filterCard = (props) => {
             setSelectedVal(id);
           }}
           key={`input${props.name}${ind}`}
+          disabled={props.disable}
         />
         <label
           htmlFor={newId}
@@ -37,8 +38,19 @@ const filterCard = (props) => {
   });
 
   return (
-    <details>
-      <summary onClick={props.close}>
+    <details
+      onClick={(e) => {
+        if (props.disable) e.preventDefault();
+      }}
+    >
+      <summary
+        style={
+          props.disable
+            ? { cursor: "not-allowed", opacity: "0.5" }
+            : { cursor: "pointer" }
+        }
+        onClick={props.close}
+      >
         <div className={styles.filterHead}>
           <div className={styles.filterName}>{props.name}</div>
           <div className={styles.collapseIconContainer}>

@@ -39,7 +39,7 @@ const ExtractFacialFeatures = (props) => {
   }
 
   return (
-    <Container>
+    <Container className={styles.cont}>
       <Row>
         <Col sm={6} className={styles.imageUpload}>
           <UploadedImage
