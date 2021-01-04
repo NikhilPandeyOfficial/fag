@@ -214,19 +214,59 @@ export const extractFeatures = async (image) => {
 
 // will return UintClampArray
 export const generateFace = async (inp) => {
-  tf.engine().startScope();
-  const model = await tf.loadLayersModel(
-    "https://nikcnnmodels.s3.ap-south-1.amazonaws.com/final-decoder-for-face-generation/model.json"
-  );
+  try {
+    const model = await tf.loadLayersModel(
+      "https://nikcnnmodels.s3.ap-south-1.amazonaws.com/final-decoder-for-face-generation/model.json"
+    );
 
-  inp = await tf.tensor1d(inp);
-  inp = await tf.expandDims(inp, 0);
+    inp = await tf.tensor1d(inp);
+    inp = await tf.expandDims(inp, 0);
 
-  let pred = await model.predict(inp);
-  pred = await pred.reshape([150, 150, 3]);
-  // pred.print();
-  pred = await tf.browser.toPixels(pred);
-  tf.engine().endScope();
+    let pred = await model.predict(inp);
+    pred = await pred.reshape([150, 150, 3]);
+    // pred.print();
+    pred = await tf.browser.toPixels(pred);
 
-  return pred;
+    return pred;
+  } catch (error) {
+    console.log(error);
+    throw console.error();
+  }
+};
+
+export const compareFaces = async (image1, image2) => {
+  try {
+    const encoder = await tf.loadLayersModel(
+      "https://nikcnnmodels.s3.ap-south-1.amazonaws.com/encoder-for-compare-faces/model.json"
+    );
+
+    const im1 = new Image(),
+      im2 = new Image();
+    im1.src = image1;
+    im2.src = image2;
+
+    let file1 = await tf.browser.fromPixels(im1);
+    file1 = await tf.image.resizeBilinear(file1, [150, 150]);
+    file1 = await file1.reshape([1, 150, 150, 3]);
+
+    let file2 = await tf.browser.fromPixels(im2);
+    file2 = await tf.image.resizeBilinear(file2, [150, 150]);
+    file2 = await file2.reshape([1, 150, 150, 3]);
+
+    const pred1 = await encoder.predict(file1).array();
+    const pred2 = await encoder.predict(file2).array();
+
+    let sim = 0;
+
+    for (let i = 0; i < 55; i++) {
+      if (pred1[0][i].toFixed(2) === pred2[0][i].toFixed(2)) sim++;
+    }
+
+    // console.log(pred1);
+    // console.log(pred2);
+    return (sim / 55) * 100;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
 };
