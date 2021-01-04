@@ -55,7 +55,7 @@ export const arrayUpdater = (current, past, arrayCollection) => {
   //   beard
   //   if (current[4] != past[4]) {
   arrayCollection[24] =
-    current[1] === "Female" || current[5] === "No-Beard"
+    current[1] === "Female" || current[4] === "No-Beard"
       ? 1
       : arrayCollection[24];
 
