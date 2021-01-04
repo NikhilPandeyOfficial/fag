@@ -222,10 +222,14 @@ export const generateFace = async (inp) => {
     inp = await tf.tensor1d(inp);
     inp = await tf.expandDims(inp, 0);
 
-    pred = await model.predict(inp);
+    let pred = await model.predict(inp);
     pred = await pred.reshape([150, 150, 3]);
     // pred.print();
-    pred = await tf.browser.toPixels(pred);
+
+    // Handled the range ecxeed error
+    pred = await tf.browser.toPixels(
+      pred.clipByValue(0, 1).mul(tf.scalar(255)).cast("int32")
+    );
 
     return pred;
   } catch (error) {

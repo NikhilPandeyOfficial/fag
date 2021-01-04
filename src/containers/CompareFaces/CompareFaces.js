@@ -5,40 +5,38 @@ import { Container, Row, Col } from "react-bootstrap";
 import { compareFaces } from "../../services";
 import styles from "./CompareFaces.module.css";
 import UploadedImage from "../../components/UploadedImage/UploadedImage";
+import Loader from "../../components/Loader/Loader";
 
 const CompareFaces = (props) => {
   const [selectedImage1, setselectedImage1] = useState(null);
   const [selectedImage2, setselectedImage2] = useState(null);
 
   const [error, setError] = useState("");
-  const [isResultLoading, setIsResultLoading] = useState(false);
   const [result, setResult] = useState("");
+  const [loader, setLoader] = useState(null);
 
   const submitHandler = async () => {
+    setLoader(<Loader />);
     try {
-      setIsResultLoading(true);
       setError("");
+      setResult("");
       if (!selectedImage1 || !selectedImage2) {
         setError("Please select both pictures!");
+        setLoader(null);
         return;
       }
       console.log("in submit handler");
       console.log(selectedImage1 + " " + selectedImage2);
       const res = await compareFaces(selectedImage1, selectedImage2);
       console.log(res);
-      setResult(res);
-    } catch (error) {
-      console.log(error);
+      setResult(res.toFixed(1));
+    } catch (e) {
+      console.log(e);
       // display some sort of popup etc to display error
-      setError("Something went wrong!");
+      setError("Something went wrong");
     }
-    setIsResultLoading(false);
+    setLoader(null);
   };
-
-  if (isResultLoading) {
-    // show loading circle here
-    // return ()
-  }
 
   return (
     <Container className={styles.cont}>
@@ -62,15 +60,19 @@ const CompareFaces = (props) => {
       </Row>
       <Row>
         <Col className={styles.btnContainer}>
-          {error && <div> This is error statemet </div>}
           <div className={styles.btn} onClick={submitHandler}>
             Compare
           </div>
+          <Col>{error && <div className={styles.error}> {error} </div>}</Col>
         </Col>
       </Row>
-
-      <Row className={styles.btnContainer}>
-        {result && <div> {`${result} %`} </div>}
+      <Row>
+        <Col className={styles.loader}>{loader}</Col>
+      </Row>
+      <Row>
+        <Col className={styles.resultContainer}>
+          {result && <div> {`${result} %`} </div>}
+        </Col>
       </Row>
 
       {/**you can use the table structure from 'ExtractFacialFeatures.js' for displaying info. */}

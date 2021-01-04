@@ -5,21 +5,23 @@ import { Container, Row, Col } from "react-bootstrap";
 import styles from "./ExtractFacialFeatures.module.css";
 import UploadedImage from "../../components/UploadedImage/UploadedImage";
 import { extractFeatures } from "./../../services";
+import Loader from "../../components/Loader/Loader";
 
 const ExtractFacialFeatures = (props) => {
   const [selectedImage, setselectedImage] = useState(null);
   const [error, setError] = useState("");
   const [features, setFeatures] = useState(null);
-  const [isResultLoading, setIsResultLoading] = useState(false);
+  const [loader, setLoader] = useState(null);
 
   const submitHandler = async () => {
+    setLoader(<Loader />);
     try {
-      setIsResultLoading(true);
       setError("");
       setFeatures(null);
       if (!selectedImage) {
         setError("Please select picture!");
         console.log(" image not selected ");
+        setLoader(null);
         return;
       }
 
@@ -30,13 +32,8 @@ const ExtractFacialFeatures = (props) => {
       // display some sort of popup etc to display error
       setError("Something went wrong!");
     }
-    setIsResultLoading(false);
+    setLoader(null);
   };
-
-  if (isResultLoading) {
-    // show loading circle here
-    // return ()
-  }
 
   return (
     <Container className={styles.cont}>
@@ -48,8 +45,8 @@ const ExtractFacialFeatures = (props) => {
             }}
             name="image"
           ></UploadedImage>
+          {error && <div className={styles.error}> {error}</div>}
           <div className={styles.btnContainer}>
-            {error && <div> This is error statemet </div>}
             <div onClick={() => submitHandler()} className={styles.btn}>
               Extract
             </div>
@@ -89,6 +86,9 @@ const ExtractFacialFeatures = (props) => {
             </thead>
           </table>
         </Col>
+      </Row>
+      <Row>
+        <Col>{loader}</Col>
       </Row>
     </Container>
   );

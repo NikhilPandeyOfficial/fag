@@ -8,7 +8,6 @@ import {
 import _ from "lodash";
 
 import FilterCard from "../../components/FilterCard/FilterCard";
-import FaceCard from "../../components/FaceCard/Facecard";
 import Filter from "../../components/Filter/Filter";
 import styles from "./GenerateFacesUsingFacialFeatures.module.css";
 import { generateFace } from "./../../services";

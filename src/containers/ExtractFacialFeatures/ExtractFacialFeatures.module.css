@@ -23,7 +23,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 200px;
+  min-width: 220px;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -76,6 +76,18 @@
 .extractionResults table tr:nth-child(1) {
   background-color: #1d1d1d;
   color: #e6ecf0;
+}
+
+.error {
+  text-align: center;
+  min-width: 220px;
+  background: repeating-linear-gradient(45deg, #ffd5d2, #ffd5d2 2px, #ffb3b3 2px, #ffb3b3 4px);
+  color: red;
+  margin: 1rem 0;
+  border: 1px solid red;
+  padding: 1rem;
+  border-radius: 10px;
+  font-weight: bold;
 }
 
 @media screen and (max-width: 575px) {
