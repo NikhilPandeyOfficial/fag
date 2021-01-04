@@ -233,6 +233,7 @@ export const generateFace = async (facialInputs) => {
   }
 };
 
+// return percentage of matching
 export const compareFaces = async (image1, image2) => {
   try {
     const encoder = await tf.loadLayersModel(
