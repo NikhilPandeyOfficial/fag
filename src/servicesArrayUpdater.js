@@ -53,20 +53,20 @@ export const arrayUpdater = (current, past, arrayCollection) => {
     arrayCollection[17] = current[3] === "Gray" ? 1 : 0;
   }
   //   beard
-  if (current[4] != past[4]) {
-    arrayCollection[24] =
-      current[1] === "Female" || current[5] === "No-Beard"
-        ? 1
-        : arrayCollection[24];
+  //   if (current[4] != past[4]) {
+  arrayCollection[24] =
+    current[1] === "Female" || current[5] === "No-Beard"
+      ? 1
+      : arrayCollection[24];
 
-    if (arrayCollection[24] === 1) {
-      arrayCollection[16] = 0;
-      arrayCollection[22] = 0;
-    } else {
-      arrayCollection[16] = 1;
-      arrayCollection[22] = 1;
-    }
+  if (arrayCollection[24] === 1) {
+    arrayCollection[16] = 0;
+    arrayCollection[22] = 0;
+  } else {
+    arrayCollection[16] = 1;
+    arrayCollection[22] = 1;
   }
+  //   }
   //   eye glasses
   if (current[5] != past[5]) {
     arrayCollection[15] = current[5] === "EyeGlasses" ? 1 : 0;
