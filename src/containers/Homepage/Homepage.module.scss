@@ -6,6 +6,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 45px;
 }
 
 .row {
@@ -14,8 +15,8 @@
 
   & h1 {
     margin-top: 50px;
-    line-height: 4rem;
-    font-size: clamp(2rem, 10vw, 5rem);
+    line-height: clamp(3rem, 10vw, 5rem);
+    font-size: clamp(3rem, 10vw, 5rem);
   }
 
   & p {
@@ -50,6 +51,10 @@
   transition: 0.3s ease-in-out;
   opacity: 0;
   pointer-events: none;
+}
+
+.box1 {
+  height: 200px;
 }
 
 .col a div {
@@ -104,11 +109,11 @@
 }
 .box3 {
   animation: animBox3 0.5s ease-in-out forwards;
-  animation-delay: 1s;
+  animation-delay: 0.5s;
 }
 .box4 {
   animation: animBox4 0.5s ease-in-out forwards;
-  animation-delay: 1.5s;
+  animation-delay: 1s;
 }
 
 @keyframes animBox1 {
@@ -138,6 +143,7 @@
 }
 
 @media screen and (max-width: 477px) {
+  .box1,
   .box2,
   .box3 {
     width: 200px;

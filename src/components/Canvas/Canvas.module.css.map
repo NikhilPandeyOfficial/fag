@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,OAAO,CAAC;EACN,MAAM,EAAE,IAAI;EACZ,MAAM,EAAE,eAAe;EACvB,aAAa,EAAE,IAAI;EACnB,UAAU,EAAE,IAAI,CAAC,IAAI,CAAC,IAAI,CAAC,wBAAwB,EAChD,KAAI,CAAE,KAAI,CAAC,IAAI,CAAC,wBAAwB,EACzC,KAAK,CAAC,IAAI,CAAC,IAAI,CAAC,IAAI,CAAC,sBAAsB,EAC3C,KAAK,CAAE,KAAI,CAAE,KAAI,CAAC,IAAI,CAAC,sBAAsB;CAChD",
+    "sources": [
+        "Canvas.module.scss",
+        "../../CSSpartials/colors.scss"
+    ],
+    "names": [],
+    "file": "Canvas.module.css"
+}

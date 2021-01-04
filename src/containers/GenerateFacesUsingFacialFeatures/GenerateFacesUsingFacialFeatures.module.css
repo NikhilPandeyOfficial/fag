@@ -14,9 +14,9 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   background-color: #222222;
 }
 
@@ -28,6 +28,10 @@
   text-align: center;
   color: #ffffff;
   cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .btn:hover {
@@ -46,6 +50,7 @@
   background-color: #222222;
   color: #e6ecf0;
   display: none;
+  margin-top: 45px;
 }
 
 .col_filterResponsive .filterBtn {
@@ -92,7 +97,8 @@
   overflow-y: auto;
   position: fixed;
   width: 100vw;
-  z-index: 10;
+  margin-top: 45px;
+  z-index: 9;
 }
 
 .closeBtn {
@@ -112,9 +118,12 @@
   padding: 1.5rem;
   background-color: #222222;
   overflow-y: auto;
-  position: fixed;
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: 45px;
   width: 100vw;
-  z-index: 10;
+  margin-top: 45px;
+  z-index: 9;
 }
 
 .hideFilters > div {
@@ -128,6 +137,33 @@
 .col_results {
   background-color: #e6ecf0;
   padding: 1rem;
+  margin-top: 45px;
+}
+
+.error {
+  text-align: center;
+  background: repeating-linear-gradient(45deg, #ffd5d2, #ffd5d2 2px, #ffb3b3 2px, #ffb3b3 4px);
+  color: red;
+  margin: 1rem 0;
+  border: 1px solid red;
+  padding: 1rem;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.resultRow {
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  -ms-grid-columns: (minmax(calc(150px + 2rem), 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(calc(150px + 2rem), 1fr));
+}
+
+.stableScroll {
+  background-color: seagreen;
+  top: 0;
+  position: -webkit-sticky;
+  position: sticky;
 }
 
 @media screen and (max-width: 575px) {
@@ -155,6 +191,9 @@
   .showFilters {
     display: block;
     position: relative;
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 45px;
   }
 }
 /*# sourceMappingURL=GenerateFacesUsingFacialFeatures.module.css.map */

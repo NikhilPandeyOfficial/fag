@@ -21,27 +21,29 @@ const Navigation = (props) => {
         <NavLink to="/" className={styles.logo} exact>
           F A G
         </NavLink>
-        <NavLink
-          className={styles.navItem}
-          activeClassName={styles.active}
-          to="/generate-faces-using-facial-features"
-        >
-          Generate Faces
-        </NavLink>
-        <NavLink
-          className={styles.navItem}
-          activeClassName={styles.active}
-          to="/compare-faces"
-        >
-          Compare Faces
-        </NavLink>
-        <NavLink
-          className={styles.navItem}
-          activeClassName={styles.active}
-          to="/extract-facial-features"
-        >
-          Extract Facial Features
-        </NavLink>
+        <div className={styles.linkGroupShow}>
+          <NavLink
+            className={styles.navItem}
+            activeClassName={styles.active}
+            to="/generate-faces-using-facial-features"
+          >
+            Generate Faces
+          </NavLink>
+          <NavLink
+            className={styles.navItem}
+            activeClassName={styles.active}
+            to="/compare-faces"
+          >
+            Compare Faces
+          </NavLink>
+          <NavLink
+            className={styles.navItem}
+            activeClassName={styles.active}
+            to="/extract-facial-features"
+          >
+            Extract Facial Features
+          </NavLink>
+        </div>
         <div className={styles.navMobileBtn} onClick={showMobileNavHandler}>
           <NavIcon className={styles.navMobileIcon}></NavIcon>
         </div>
