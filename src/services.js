@@ -261,15 +261,12 @@ export const compareFaces = async (image1, image2) => {
     const pred1 = await encoder.predict(file1).array();
     const pred2 = await encoder.predict(file2).array();
 
-    let sim = 0;
-
-    for (let i = 0; i < 55; i++) {
-      if (pred1[0][i].toFixed(2) === pred2[0][i].toFixed(2)) sim++;
-    }
-
-    // console.log(pred1);
-    // console.log(pred2);
-    return (sim / 55) * 100;
+    const loss = await tf.losses.cosineDistance(pred1, pred2, 0).array();
+    // loss.print();
+    console.log("loss " + loss);
+    const sim = 1 - loss;
+    console.log("similarity " + sim);
+    return sim * 100;
   } catch (error) {
     console.log(error);
     throw error;
